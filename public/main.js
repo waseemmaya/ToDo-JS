@@ -28,25 +28,23 @@ function showTasks() {
                               data.title
                             }</ul>
                             <ul class="list-group-item">Body : ${data.body}</ul>
-                            <ul class="list-group-item">Time : ${data.date}</ul>
-                           <div class="container"> 
-                           <button onClick="deleteTask(${data.key},'${
-      data.title
-    }')" class="btn btn-primary  mb-2 mt-2" data-toggle="modal" data-target="#myModal">
-                           Delete
-                           </button>
-                           </div>
+                            <ul class="list-group-item">Time : ${data.date}<button onClick="deleteTask(${data.key},'${
+                              data.title
+                            }')" class="btn btn-sm btn-danger float-right">
+                                                   Delete
+                                                   </button>
+                                                  
+                                                   </ul>
+                           
                         </li>
-                        <hr>
-                    `;
+                        `;
   });
   document.getElementById("tasks").innerHTML = output;
 }
 
 function deleteTask(val, tit) {
   console.log(tit);
-  var result = confirm(`Are you sure you want to delete?  
-  <h3>${tit}</h3>`);
+  var result = confirm(`Are you sure you want to delete "${tit}"`);
   if (result) {
     //Logic to delete the item
     for (var i = 0; i < tasks.length; i++)
