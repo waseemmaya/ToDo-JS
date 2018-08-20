@@ -19,7 +19,7 @@ function addTodo() {
 }
 
 function showTasks() {
-  let output = "";
+  var output = "";
   tasks.map(data => {
     output += `
                         <li class="list-group mb-1">
@@ -28,7 +28,7 @@ function showTasks() {
                             }</ul>
                             <ul class="list-group-item">Body : ${data.body}</ul>
                             <ul class="list-group-item">Time : ${data.date}</ul>
-                           <div class="container"> <button class="btn btn-secondary  mb-1 mt-2">Delete</button></div>
+                           <div class="container"> <button class="btn btn-primary  mb-2 mt-2">Delete</button></div>
                         </li>
                         <hr>
                     `;
