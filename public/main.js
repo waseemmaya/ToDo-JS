@@ -6,16 +6,14 @@ function addTodo() {
   if (title == "" || body == "") {
     alert("Sorry Enter Something");
   } else {
-    tasks.push({
+    tasks.unshift({
       key: Math.floor(100444000 + Math.random() * 90012000),
       title: title,
       body: body,
       date: new Date().toDateString()
     });
-
     document.querySelector("form").reset();
     showTasks();
-    console.log(tasks);
   }
 }
 
@@ -28,13 +26,21 @@ function showTasks() {
                               data.title
                             }</ul>
                             <ul class="list-group-item">Body : ${data.body}</ul>
-                            <ul class="list-group-item">Time : ${data.date}<button onClick="deleteTask(${data.key},'${
-                              data.title
-                            }')" class="btn btn-sm btn-danger float-right">
+                            <ul class="list-group-item">Time : ${data.date}</ul>
+                             <ul class="list-group-item"><button onClick="deleteTask(${
+                               data.key
+                             },'${
+      data.title
+    }')" class="myButton btn btn-sm btn-danger float-right">
                                                    Delete
                                                    </button>
-                                                  
-                                                   </ul>
+                                                   <button onClick="editTask(${
+                                                     data.key
+                                                   },'${
+      data.title
+    }')" class="myButton btn btn-sm btn-warning float-right">
+                                                   Edit 
+                                                   </button></ul>
                            
                         </li>
                         `;
@@ -43,9 +49,8 @@ function showTasks() {
 }
 
 function deleteTask(val, tit) {
-  console.log(tit);
-  var result = confirm(`Are you sure you want to delete "${tit}"`);
-  if (result) {
+  var confirmDelete = confirm(`Are you sure you want to delete "${tit}"`);
+  if (confirmDelete) {
     //Logic to delete the item
     for (var i = 0; i < tasks.length; i++)
       if (tasks[i].key === val) {
@@ -56,12 +61,12 @@ function deleteTask(val, tit) {
   }
 }
 
-// function deleteTask(val) {
-//   console.log(val);
-//   tasks.forEach(element => {
-//     console.log(element.key);
-//     if (val === element.key) {
-//       console.log("mil gaya");
-//     }
-//   });
-// }
+function editTask(val, tit) {
+  //Logic to Edit the item
+  for (var i = 0; i < tasks.length; i++)
+    if (tasks[i].key === val) {
+      tasks[i].body = prompt("Enter new value for " + tit);
+      showTasks();
+      break;
+    }
+}
